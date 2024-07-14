@@ -1,0 +1,55 @@
+<p-menubar [model]="menuItems">
+    <ng-template pTemplate="start">
+        <div class="navbar-start">
+            <a pRipple class="p-ripple p-element p-menuitem-link navbar-logo" routerLink="homepage">
+                <img src="assets/images/logos/blog_logo_b.png" alt="Homepage">
+            </a>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="item" let-item>
+        <a pRipple class="p-ripple p-element p-menuitem-link" [routerLink]="item.routerLink">
+            <span class="p-menuitem-icon" [ngClass]="item.icon"></span>
+            <span class="p-menuitem-text">{{item.label}}</span>
+        </a>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <div class="navbar-end">
+            <ng-container *ngIf="isLoggedIn; else loginButtons">
+                <div id="navbar-dropdown">
+                    <p-menubar [model]="authItems" [autoDisplay]="false">
+                        <ng-template pTemplate="item" let-item>
+                            <a pRipple class="p-ripple p-element p-menuitem-link" (click)="menuItemClicked(item)">
+                                <i class="p-menuitem-icon" [ngClass]="item.icon"></i>
+                                <span class="p-menuitem-text">
+                                    {{ item.label }}
+                                </span>
+                            </a>
+                        </ng-template>
+                    </p-menubar>
+                </div>
+            </ng-container>
+            <ng-template #loginButtons>
+                <div class="p-element">
+                    <ul class="p-menubar-root-list">
+                        <li pTooltip class="p-element p-menuitem">
+                            <div class="p-menuitem-content">
+                                <button class="auth-button" routerLink="auth/login">Sign Up/Log In</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </ng-template>
+
+            <button type="button" (click)="switchDarkMode()" class="toggle-dark-mode">
+                <span *ngIf="!darkMode" class="light-mode">
+                    <i class="pi pi-sun"></i>
+                </span>
+                <span *ngIf="darkMode" class="dark-mode">
+                    <i class="pi pi-moon"></i>
+                </span>
+            </button>
+        </div>
+    </ng-template>
+</p-menubar>

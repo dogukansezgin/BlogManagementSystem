@@ -1,0 +1,19 @@
+.cs-navbar {
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgb(242, 242, 242, 1);
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 1px 5px 0px;
+    z-index: 500;
+    position: relative;
+    transition: transform 0.13s ease-in-out;
+}
+
+.cs-navbar.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.content {
+    min-height: 100vmin;
+    background-color: var(--surface-50);
+    color: var(--text-color);
+}
