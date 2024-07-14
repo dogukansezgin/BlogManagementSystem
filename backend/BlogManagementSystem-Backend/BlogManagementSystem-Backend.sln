@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C7AD0084-9CF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogManagementSystem", "BlogManagementSystem", "{3E4C1876-A845-4E74-92CC-600F2F202B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\BlogManagementSystem\Application\Application.csproj", "{C7EC2CEC-FEB2-43BB-9444-643CE9C0B3F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\BlogManagementSystem\Application\Application.csproj", "{C7EC2CEC-FEB2-43BB-9444-643CE9C0B3F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\BlogManagementSystem\Domain\Domain.csproj", "{450612AC-9AB2-4AEA-94F5-86A37B3B79C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\BlogManagementSystem\Domain\Domain.csproj", "{450612AC-9AB2-4AEA-94F5-86A37B3B79C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\BlogManagementSystem\Infrastructure\Infrastructure.csproj", "{47F71341-FE61-4729-9238-5BC5B6B00F55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\BlogManagementSystem\Infrastructure\Infrastructure.csproj", "{47F71341-FE61-4729-9238-5BC5B6B00F55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\BlogManagementSystem\Persistence\Persistence.csproj", "{CE95DC3B-ABA8-43C9-A379-A28BE4E4EBDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\BlogManagementSystem\Persistence\Persistence.csproj", "{CE95DC3B-ABA8-43C9-A379-A28BE4E4EBDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\BlogManagementSystem\WebAPI\WebAPI.csproj", "{C435F340-9C42-4731-AD12-7867D92280C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\BlogManagementSystem\WebAPI\WebAPI.csproj", "{C435F340-9C42-4731-AD12-7867D92280C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
