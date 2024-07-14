@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="NArchitecture.Core.Application" Version="1.0.5" />
+    <PackageReference Include="NArchitecture.Core.CrossCuttingConcerns.Exception" Version="1.0.1" />
+    <PackageReference Include="NArchitecture.Core.Localization.Abstraction" Version="1.0.1" />
+    <PackageReference Include="NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection" Version="1.0.2" />
+    <PackageReference Include="NArchitecture.Core.Security.DependencyInjection" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>
