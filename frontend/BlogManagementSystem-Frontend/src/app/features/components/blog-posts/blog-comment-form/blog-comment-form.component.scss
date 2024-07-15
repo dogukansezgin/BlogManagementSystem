@@ -1,0 +1,16 @@
+.comment-input-field {
+    margin-bottom: 16px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--comment-seperator);
+    border-radius: 4px;
+    resize: vertical;
+    color: var(--text-color);
+}
+
+button {
+    width: 100%;
+}

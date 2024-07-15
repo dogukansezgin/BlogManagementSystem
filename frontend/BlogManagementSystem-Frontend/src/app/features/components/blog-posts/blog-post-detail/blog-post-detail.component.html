@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="blog">
+    <div class="blog-header">
+      <h1>{{ blogPost.title }}</h1>
+      <div class="author">
+        <div class="author-info">
+          <img src="assets/images/avatars/user_avatar.png" alt="Author Image" class="author-image">
+          <p class="author-name"><strong>{{ blogPost.userUserName }}</strong></p>
+          <p class="blog-date">{{ blogPost.createdDate | date: 'mediumDate' }}</p>
+        </div>
+        <div class="blog-post-controls" *ngIf="authUserId == blogPost.userId">
+          <button class="blog-post-control" (click)="editBlogPost()"><i class="pi pi-pencil"></i></button>
+          <button class="blog-post-control" (click)="deleteBlogPost()"><i class="pi pi-trash"></i></button>
+       </div>
+      </div>
+    </div>
+
+    <div class="blog-content">
+      {{ blogPost.content }}
+    </div>
+  </div>
+
+  <div class="comment-list">
+    <h3>Comments (<i>{{blogPost.comments.length}}</i>)</h3>
+    <div class="comment" *ngFor="let comment of blogPost.comments.sort()">
+      <app-blog-comment-card
+      [commentId]="comment.id"
+      [commentAuthorUsername]="comment.userUserName"
+      [commentAuthorId]="comment.userId"
+      [content]="comment.content"
+      [createdDate]="comment.createdDate"
+      [authUserId]="authUserId ? authUserId : 'null'"
+      (commentDeleted)="onCommentDeleted($event)">
+      </app-blog-comment-card>
+    </div>
+
+    <div class="comment-input-container">
+      <app-blog-comment-form [userId]="authUserId ? authUserId : 'null'" [blogPostId]="blogPostId" (commentAdded)="onCommentAdded($event)"></app-blog-comment-form>
+    </div>
+
+  </div>
+</div>

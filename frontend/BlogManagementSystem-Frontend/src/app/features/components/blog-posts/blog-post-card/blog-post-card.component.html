@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-header">
+        <img src="assets/images/avatars/user_avatar.png" alt="Author Image" class="author-image">
+        <div class="author-info">
+            <span class="author-name">{{authorUsername}}</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">{{title}}</h3>
+        <p class="card-description">{{ content | truncate: 177 - title.length }}</p>
+    </div>
+    <div class="card-footer">
+        <span class="post-date">{{ createdDate | date:'longDate' }}</span>
+        <span class="post-stats">{{commentCount}}<i class="pi pi-comment"></i></span>
+    </div>
+</div>

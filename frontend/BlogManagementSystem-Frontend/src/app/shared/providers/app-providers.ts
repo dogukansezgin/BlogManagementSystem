@@ -12,6 +12,10 @@ import { LocalStorageBaseService } from "../../features/services/abstracts/local
 import { LocalStorageService } from "../../features/services/concretes/local-storage.service";
 import { TokenBaseService } from "../../features/services/abstracts/token-base.service";
 import { TokenService } from "../../features/services/concretes/token.service";
+import { BlogPostBaseService } from "../../features/services/abstracts/blog-post-base.service";
+import { BlogPostService } from "../../features/services/concretes/blog-post.service";
+import { CommentBaseService } from "../../features/services/abstracts/comment-base.service";
+import { CommentService } from "../../features/services/concretes/comment.service";
 
 export function getAppProviders() {
     const themeServiceProviders = {
@@ -30,12 +34,22 @@ export function getAppProviders() {
         provide: TokenBaseService,
         useClass: TokenService
     };
+    const blogPostServiceProviders = {
+        provide: BlogPostBaseService,
+        useClass: BlogPostService
+    };
+    const commentServiceProviders = {
+        provide: CommentBaseService,
+        useClass: CommentService
+    }
 
     return [
         themeServiceProviders,
         authServiceProviders,
         localStorageServiceProviders,
         tokenServiceProviders,
+        blogPostServiceProviders,
+        commentServiceProviders,
 
         provideRouter(routes),
         provideHttpClient(withInterceptors([

@@ -1,0 +1,15 @@
+<div class="comment-header">
+    <div class="comment-author-info">
+        <img src="assets/images/avatars/user_avatar.png" alt="Comment Author Image" class="comment-author-image">
+        <p class="comment-author-name"><strong>{{ commentAuthorUsername }}</strong> </p>
+    </div>
+    <div class="comment-controls" *ngIf="authUserId == commentAuthorId">
+        <button class="comment-control" (click)="deleteComment(commentId)"><i class="pi pi-trash"></i></button>
+    </div>
+</div>
+<div class="comment-content">
+    {{ content }}
+</div>
+<div class="comment-footer">
+    <p class="comment-date">{{ createdDate | date: 'medium' }}</p>
+</div>

@@ -1,0 +1,9 @@
+<p-toast autoZIndex="true"/>
+<h3>Leave a Comment</h3>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div class="comment-input-field">
+        <label for="comment">Add your comment below</label>
+        <textarea id="comment" formControlName="content" rows="5" required class="comment-input"></textarea>
+    </div>
+    <button pButton type="submit" label="Submit" class="p-button-success"></button>
+</form>

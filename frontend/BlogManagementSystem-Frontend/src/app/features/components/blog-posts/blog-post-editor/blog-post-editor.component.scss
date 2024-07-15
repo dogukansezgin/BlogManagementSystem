@@ -1,0 +1,48 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 80px;
+
+    .editor-container {
+        max-width: 600px;
+        margin: 0 auto 0 auto;
+        padding: 20px;
+        border: 1px solid var(--darkmode-button-border-color);
+        border-radius: 8px;
+        background-color: var(--comment-bg);
+
+        .form-group {
+            margin-bottom: 25px;
+
+            .form-control {
+                background-color: var(--editor-input-bg);
+                color: var(--editor-input-color);
+            }
+
+            .form-control::placeholder {
+                color: var(--post-card-color-secondary);
+            }
+
+            label {
+                font-weight: bold;
+                color: var(--editor-input-color);
+            }
+
+            .error {
+                position: absolute;
+                color: red;
+                font-size: 0.875rem;
+            }
+        }
+
+        .form-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            .btn-success {
+                margin-top: 20px;
+            }
+        }
+    }
+}

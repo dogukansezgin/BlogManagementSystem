@@ -1,0 +1,28 @@
+<div class="blog-post-feed">
+
+    <div class="filter-group">
+        <div class="filter">
+            <label for="authorFilter">Filter by Author</label>
+            <input type="text" id="authorFilter" [(ngModel)]="selectedAuthor">
+        </div>
+        
+        <div class="filter">
+            <label for="dateFilter">Filter by Date</label>
+            <input type="date" id="dateFilter" [(ngModel)]="selectedDate">
+        </div>
+    </div>
+    
+    <div class="blog-post-list">
+        <div class="post" *ngFor="let post of blogPostList.items | filterByAuthor:selectedAuthor | filterByDate:selectedDate">
+            <a [routerLink]="routeToDetail(post.userUserName, post.id)">
+                <app-blog-post-card 
+                [authorUsername]="post.userUserName" 
+                [title]="post.title" 
+                [content]="post.content"
+                [commentCount]="post.comments.length"
+                [createdDate]="post.createdDate">
+                </app-blog-post-card>
+            </a>
+        </div>
+    </div>
+</div>

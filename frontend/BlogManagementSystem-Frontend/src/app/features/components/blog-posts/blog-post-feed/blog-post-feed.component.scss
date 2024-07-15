@@ -1,0 +1,30 @@
+.blog-post-feed {
+    margin: 5 auto;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px 0 60px 0;
+    gap: 50px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.blog-post-list {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.post {
+    padding: 3px 0;
+}
+
+a {
+    text-decoration: none !important;
+}
