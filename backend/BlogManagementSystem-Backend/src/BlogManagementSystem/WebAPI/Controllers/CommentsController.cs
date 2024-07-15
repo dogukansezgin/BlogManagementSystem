@@ -35,7 +35,7 @@ public class CommentsController : BaseController
         return Created(uri: "", result);
     }
 
-    [HttpDelete("delete")]
+    [HttpPost("delete")]
     public async Task<IActionResult> Delete([FromBody] DeleteCommentCommand deleteCommentCommand)
     {
         DeletedCommentResponse result = await Mediator.Send(deleteCommentCommand);

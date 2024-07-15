@@ -20,8 +20,20 @@ public class MappingProfiles : Profile
         CreateMap<BlogPost, UpdatedBlogPostResponse>().ReverseMap();
         CreateMap<BlogPost, DeleteBlogPostCommand>().ReverseMap();
         CreateMap<BlogPost, DeletedBlogPostResponse>().ReverseMap();
-        CreateMap<BlogPost, GetByIdBlogPostResponse>().ReverseMap();
-        CreateMap<BlogPost, GetListBlogPostListItemDto>().ReverseMap();
+
+        CreateMap<BlogPost, GetByIdBlogPostResponse>()
+            .ForMember(dest => dest.UserUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+            .ReverseMap();
+        CreateMap<BlogPost, GetListBlogPostListItemDto>()
+            .ForMember(dest => dest.UserUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+            .ReverseMap();
         CreateMap<IPaginate<BlogPost>, GetListResponse<GetListBlogPostListItemDto>>().ReverseMap();
+
+        CreateMap<Comment, CommentDto>()
+            .ForMember(dest => dest.UserUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ReverseMap();
+        CreateMap<Comment, CommentDtoCount>().ReverseMap();
     }
 }

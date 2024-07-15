@@ -1,6 +1,4 @@
-using System.Globalization;
 using System.Linq.Expressions;
-using System.Text;
 using Application.Features.BlogPosts.Rules;
 using Application.Services.Repositories;
 using Domain.Entities;
@@ -66,7 +64,7 @@ public class BlogPostManager : IBlogPostService
     public async Task<BlogPost> AddAsync(BlogPost blogPost)
     {
         await _blogpostBusinessRules.BlogPostForeignKeysShouldExist(blogPost);
-        await _blogpostBusinessRules.BlogPostShouldNotExist(blogPost);
+        //await _blogpostBusinessRules.BlogPostShouldNotExist(blogPost);
 
         BlogPost addedBlogPost = await _blogpostRepository.AddAsync(blogPost);
 
@@ -93,14 +91,14 @@ public class BlogPostManager : IBlogPostService
         return deletedBlogPost;
     }
 
-    public async Task<ICollection<BlogPost>> DeleteRangeAsync(ICollection<BlogPost> blogposts, bool permanent = false)
+    public async Task<ICollection<BlogPost>> DeleteRangeAsync(ICollection<BlogPost> blogPosts, bool permanent = false)
     {
-        foreach (BlogPost blogPost in blogposts)
+        foreach (BlogPost blogPost in blogPosts)
         {
             await _blogpostBusinessRules.BlogPostShouldExistWhenSelected(blogPost);
         }
 
-        ICollection<BlogPost> deletedBlogPosts = await _blogpostRepository.DeleteRangeCustomAsync(blogposts, permanent);
+        ICollection<BlogPost> deletedBlogPosts = await _blogpostRepository.DeleteRangeCustomAsync(blogPosts, permanent);
 
         return deletedBlogPosts;
     }
@@ -114,14 +112,14 @@ public class BlogPostManager : IBlogPostService
         return restoredBlogPost;
     }
 
-    public async Task<ICollection<BlogPost>> RestoreRangeAsync(ICollection<BlogPost> blogposts)
+    public async Task<ICollection<BlogPost>> RestoreRangeAsync(ICollection<BlogPost> blogPosts)
     {
-        foreach (BlogPost blogPost in blogposts)
+        foreach (BlogPost blogPost in blogPosts)
         {
             await _blogpostBusinessRules.BlogPostShouldExistWhenSelected(blogPost);
         }
 
-        ICollection<BlogPost> deletedBlogPosts = await _blogpostRepository.RestoreRangeCustomAsync(blogposts);
+        ICollection<BlogPost> deletedBlogPosts = await _blogpostRepository.RestoreRangeCustomAsync(blogPosts);
 
         return deletedBlogPosts;
     }
@@ -131,6 +129,7 @@ public class BlogPostManager : IBlogPostService
         BlogPost? blogPost = await _blogpostRepository.GetAsync(
             x => x.Id == id,
             include: x => x.Include(x => x.User)
+                           .Include(x => x.Comments).ThenInclude(y => y.User)
         );
 
         await _blogpostBusinessRules.BlogPostShouldExistWhenSelected(blogPost);

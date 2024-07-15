@@ -27,9 +27,9 @@ public interface IBlogPostService
     Task<BlogPost> AddAsync(BlogPost blogPost);
     Task<BlogPost> UpdateAsync(BlogPost blogPost);
     Task<BlogPost> DeleteAsync(BlogPost blogPost, bool permanent = false);
-    Task<ICollection<BlogPost>> DeleteRangeAsync(ICollection<BlogPost> bootcamps, bool permanent = false);
+    Task<ICollection<BlogPost>> DeleteRangeAsync(ICollection<BlogPost> blogPosts, bool permanent = false);
     Task<BlogPost> RestoreAsync(BlogPost blogPost);
-    Task<ICollection<BlogPost>> RestoreRangeAsync(ICollection<BlogPost> bootcamps);
+    Task<ICollection<BlogPost>> RestoreRangeAsync(ICollection<BlogPost> blogPosts);
     Task<BlogPost> GetByIdAsync(Guid id);
     Task<BlogPost> GetByTitleAsync(string name);
 }

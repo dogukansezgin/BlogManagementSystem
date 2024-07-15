@@ -42,6 +42,7 @@ public class GetListBlogPostQuery : IRequest<GetListResponse<GetListBlogPostList
                 cancellationToken: cancellationToken,
                 orderBy: x => x.OrderByDescending(y => y.CreatedDate),
                 include: x => x.Include(x => x.User)
+                               .Include(x => x.Comments)
             );
 
             GetListResponse<GetListBlogPostListItemDto> response = _mapper.Map<GetListResponse<GetListBlogPostListItemDto>>(

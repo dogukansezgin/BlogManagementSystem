@@ -7,15 +7,11 @@ using NArchitecture.Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.BlogPosts.Queries.GetById;
 
-public class GetByIdBlogPostQuery : IRequest<GetByIdBlogPostResponse>, ISecuredRequest
+public class GetByIdBlogPostQuery : IRequest<GetByIdBlogPostResponse> /*, ISecuredRequest*/
 {
     public Guid Id { get; set; }
 
-    public string[] Roles =>
-        [
-            UsersOperationClaims.Admin,
-            UsersOperationClaims.User
-        ];
+    public string[] Roles => [];
 
     public class GetByIdBlogPostQueryHandler : IRequestHandler<GetByIdBlogPostQuery, GetByIdBlogPostResponse>
     {
