@@ -16,4 +16,5 @@ export abstract class AuthBaseService {
     abstract isAuthenticated(): boolean;
     abstract hasRole(roles: string[]): boolean;
     abstract logOut(): void;
+    abstract getCurrentUserId(): string | null;
 }

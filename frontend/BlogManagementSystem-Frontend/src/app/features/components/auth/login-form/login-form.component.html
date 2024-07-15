@@ -1,32 +1,4 @@
-<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" class="form-control">
-        <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-message">
-            A valid email is required.
-        </small>
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-container">
-            <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
-                class="form-control">
-            <button type="button" (click)="togglePasswordVisibility()" class="toggle-button">
-                {{ showPassword ? 'Gizle' : 'Göster' }}
-            </button>
-        </div>
-        <small *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
-            class="invalid-message">
-            Password is required.
-        </small>
-        <small *ngIf="loginForm.get('password')?.errors?.['pattern']" class="invalid-message">
-            It must be at least 8 characters long and contain uppercase letters, lowercase letters, <br> numbers and special characters.
-        </small>
-    </div>
-
-    <button type="submit" [disabled]="loginForm.invalid" class="submit-button">Gönder</button>
-</form> -->
+<p-toast autoZIndex="true"/>
 <h1>Welcome Back!</h1>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -55,5 +27,5 @@
         </button>
     </div>
 
-    <button type="submit" [disabled]="loginForm.invalid" class="button button-block">Log In</button>
+    <button type="submit" [disabled]="submitted" class="button button-block">Log In</button>
 </form>

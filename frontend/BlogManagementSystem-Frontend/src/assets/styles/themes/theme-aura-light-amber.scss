@@ -1,6 +1,9 @@
 @import "primeng/resources/themes/aura-light-amber/theme.css";
 
 :root {
+    --text-color: #272727;
+    --header-text-color: #3C3E3E;
+
     --darkmode-button-bg: #ffffff;
     --darkmode-button-border-color: #c0baba;
     --darkmode-icon-color: #ff8a04f3;
@@ -17,4 +20,17 @@
     --navbar-color: #4f4f55;
     --navbar-color-hover: #000000;
     --navbar-border-color: #dfdfdf;
+
+    --post-card-bg: #ffffff;
+    --post-card-color: #212529;
+    --post-card-color-secondary: #555555;
+    --post-card-seperator: rgba(0, 0, 0, 0.175);
+
+    --comment-bg: #e0e0e0;
+    --comment-color: #212529;
+    --comment-color-secondary: #555555;
+    --comment-seperator: rgba(0, 0, 0, 0.175);
+
+    --editor-input-bg: #f0f0f0;
+    --editor-input-color: #2c2c2c;
 }

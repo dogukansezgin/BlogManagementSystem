@@ -1,43 +1,4 @@
-<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
-    <div class="form-group">
-        <label for="userName">Username</label>
-        <input id="userName" formControlName="userName" type="text" class="form-control">
-        <small *ngIf="registerForm.get('userName')?.errors?.['required'] && registerForm.get('userName')?.touched" class="invalid-message">
-            Username is required.
-        </small>
-        <small *ngIf="registerForm.get('userName')?.errors?.['minlength']" class="invalid-message">
-            It must be at least 3 characters long.
-        </small>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" class="form-control">
-        <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-message">
-            A valid email is required.
-        </small>
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-container">
-            <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
-                class="form-control">
-            <button type="button" (click)="togglePasswordVisibility()" class="toggle-button">
-                {{ showPassword ? 'Gizle' : 'Göster' }}
-            </button>
-        </div>
-        <small *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
-            class="invalid-message">
-            Password is required.
-        </small>
-        <small *ngIf="registerForm.get('password')?.errors?.['pattern']" class="invalid-message">
-            It must be at least 8 characters long and contain uppercase letters,<br> lowercase letters, numbers and special characters.
-        </small>
-    </div>
-
-    <button type="submit" [disabled]="registerForm.invalid" class="submit-button">Gönder</button>
-</form> -->
+<p-toast autoZIndex="true"/>
 <h1>Sign Up for Free</h1>
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -76,5 +37,5 @@
         </button>
     </div>
 
-    <button type="submit" [disabled]="!registerForm.valid" class="button button-block">Get Started</button>
+    <button type="submit" [disabled]="submitted" class="button button-block">Get Started</button>
 </form>

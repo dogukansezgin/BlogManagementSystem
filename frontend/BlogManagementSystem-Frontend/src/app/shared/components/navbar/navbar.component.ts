@@ -79,6 +79,11 @@ export class NavbarComponent implements OnInit {
 
       this.authItems = [
         {
+          label: 'Write',
+          icon: 'pi pi-pen-to-square',
+          routerLink: 'edit',
+        },
+        {
           label: 'Settings',
           icon: 'pi pi-user',
           items: [
@@ -94,12 +99,6 @@ export class NavbarComponent implements OnInit {
             },
             {
               separator: true
-            },
-            {
-              label: 'Profile',
-            },
-            {
-              label: 'Your stories',
             },
             {
               separator: true
@@ -127,6 +126,8 @@ export class NavbarComponent implements OnInit {
   menuItemClicked(item: any) {
     if (item.label === 'Log Out') {
       this.logOut();
+    } else if (item.label === 'Write') {
+      this.router.navigate(['write/new'])
     }
   }
 }

@@ -6,5 +6,16 @@ export const environment = {
       register: '',
       login: ''
     },
+    blogPosts: {
+      getList: '',
+      getById: '',
+      create: '',
+      update: '',
+      delete: ''
+    },
+    comments: {
+      create: '',
+      delete: ''
+    }
   }
 };

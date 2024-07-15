@@ -73,4 +73,8 @@ export class AuthService extends AuthBaseService {
             window.location.reload();
         }, 500);
     }
+
+    getCurrentUserId(): string | null {
+        return this.tokenService.getCurrentUserId();
+    } 
 }

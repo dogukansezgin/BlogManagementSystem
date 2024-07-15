@@ -1,28 +1,33 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { UserLoginRequest } from '../../../models/requests/users/user-login-request';
 import { AuthBaseService } from '../../../services/abstracts/auth-base.service';
 import { Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [SharedModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, CommonModule, FormsModule, ReactiveFormsModule, ToastModule],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss'
+  styleUrl: './login-form.component.scss',
+  providers: [MessageService, Document]
 })
 export class LoginFormComponent implements OnInit {
 
   loginForm!: FormGroup;
   showPassword: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
     private authService: AuthBaseService, 
-    @Inject(DOCUMENT) private document: Document,
-    private router: Router
+    private document2: Document,
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -39,11 +44,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   activeTab(): void {
-    let tabRegister = this.document.getElementById('tab-register') as HTMLLinkElement;
+    let tabRegister = this.document2.getElementById('tab-register') as HTMLLinkElement;
     if (tabRegister) {
       tabRegister.classList.remove('active')
     }
-    let tabLogin = this.document.getElementById('tab-login') as HTMLLinkElement;
+    let tabLogin = this.document2.getElementById('tab-login') as HTMLLinkElement;
     if (tabLogin) {
       tabLogin.classList.add('active')
     }
@@ -84,6 +89,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     if (this.loginForm.valid) {
       let loginModel: UserLoginRequest = Object.assign({}, this.loginForm.value)
 
@@ -93,6 +99,7 @@ export class LoginFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('Login failed:', err);
+          this.messageService.add({ severity: 'error', summary: 'Something went wrong', detail: 'Please check the fields and try again. If the error persists, please contact support.', life: 15000 });
         }
       });
 
@@ -105,6 +112,9 @@ export class LoginFormComponent implements OnInit {
       labels.forEach(label => {
         label?.classList.remove('active', 'highlight');
       });
+    } else {
+      this.messageService.add({ severity: 'warn', summary: 'Missing or incorrect field(s)', detail: 'Fill in the fields with valid data and try again.', life: 10000 });
     }
+    this.submitted = false;
   }
 }
