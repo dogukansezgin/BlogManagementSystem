@@ -1,5 +1,6 @@
 export interface CommentCreateRequest{
     content: string,
     userId: string
-    blogPostId: string
+    blogPostId: string,
+    parentId?: string | null
 }

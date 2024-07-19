@@ -3,5 +3,6 @@ export interface CommentCreateResponse{
     content: string,
     userId: string
     blogPostId: string,
+    parentId?: string | null
     createdDate: Date
 }

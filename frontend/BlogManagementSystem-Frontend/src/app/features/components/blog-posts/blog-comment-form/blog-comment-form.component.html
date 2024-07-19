@@ -1,9 +1,25 @@
-<p-toast autoZIndex="true"/>
-<h3>Leave a Comment</h3>
+<p-toast autoZIndex="true" />
 <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <div class="comment-input-field">
-        <label for="comment">Add your comment below</label>
-        <textarea id="comment" formControlName="content" rows="5" required class="comment-input"></textarea>
+        <div class="label-field" *ngIf="!parentCommentId">
+            <div class="label-header">
+                <h3>Leave a Comment</h3>
+            </div>
+            <div class="label">
+                <label for="comment">Please provide your feedback or ask a question about the blog post.</label>
+            </div>
+            <textarea id="comment" placeholder="Write your comment..." formControlName="content" rows="5" required class="comment-input"></textarea>
+        </div>
+        <div class="label-field" *ngIf="parentCommentId">
+            <div class="label-header">
+                <h3>Reply to a Comment</h3>
+                <button class="cancel-reply-button" (click)="cancelReply()"><i class="pi pi-times"></i></button>
+            </div>
+            <div class="label">
+                <label for="comment">Your reply will be visible under the comment you're responding to.</label>
+            </div>
+            <textarea id="comment" placeholder="Write your reply..." formControlName="content" rows="5" required class="comment-input"></textarea>
+        </div>
     </div>
     <button pButton type="submit" label="Submit" class="p-button-success"></button>
 </form>

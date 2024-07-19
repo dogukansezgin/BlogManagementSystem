@@ -1,15 +1,29 @@
 <div class="comment-header">
     <div class="comment-author-info">
         <img src="assets/images/avatars/user_avatar.png" alt="Comment Author Image" class="comment-author-image">
-        <p class="comment-author-name"><strong>{{ commentAuthorUsername }}</strong> </p>
+        <p class="comment-author-name"><strong>{{ comment.userUserName }}</strong> </p>
     </div>
-    <div class="comment-controls" *ngIf="authUserId == commentAuthorId">
-        <button class="comment-control" (click)="deleteComment(commentId)"><i class="pi pi-trash"></i></button>
+    <div class="comment-controls">
+        <button class="comment-control" *ngIf="authUserId == comment.userId" 
+            (click)="deleteComment(comment.id)"><i class="pi pi-trash"></i></button>
+        <button class="comment-control mirror-icon"
+            (click)="replyComment(comment.id)"><i class="pi pi-reply"></i></button>
     </div>
 </div>
 <div class="comment-content">
-    {{ content }}
+    {{ comment.content }}
 </div>
 <div class="comment-footer">
-    <p class="comment-date">{{ createdDate | date: 'medium' }}</p>
+    <p class="comment-date">{{ comment.createdDate | date: 'medium' }}</p>
+    
+    <div class="nested-comments" *ngIf="comment.replies.length > 0">
+        <app-blog-comment-card  *ngFor="let reply of comment.replies.sort()" 
+            [comment]="reply"
+            [authUserId]="authUserId"
+            (commentDeleted)="commentDeleted.emit($event)"
+            (parentComment)="parentComment.emit($event)"
+            (scrollToCommentInput)="scrollToCommentInput.emit($event)">
+        </app-blog-comment-card>
+    </div>
 </div>
+

@@ -11,6 +11,28 @@
     color: var(--text-color);
 }
 
+.label-field {
+    display: flex;
+    flex-direction: column;
+
+    .label-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        .cancel-reply-button {
+            border: 0px;
+            background-color: transparent;
+            margin-left: 5px;
+            width: 30px;
+            height: 30px;
+            color: rgb(225, 0, 0);
+        }
+    }
+}
+
+
 button {
     width: 100%;
 }

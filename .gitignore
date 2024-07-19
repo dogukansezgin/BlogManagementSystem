@@ -405,6 +405,7 @@ FodyWeavers.xsd
 
 # Compiled output
 /dist
+frontend/BlogManagementSystem-Frontend/dist
 /tmp
 /out-tsc
 /bazel-out
@@ -433,6 +434,7 @@ yarn-error.log
 
 # Miscellaneous
 /.angular/cache
+frontend/BlogManagementSystem-Frontend/.angular/cache/
 .sass-cache/
 /connect.lock
 /coverage

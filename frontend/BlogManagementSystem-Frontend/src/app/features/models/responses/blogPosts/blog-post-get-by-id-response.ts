@@ -4,14 +4,16 @@ export interface BlogPostGetByIdResponse {
     content: string,
     userId: string,
     userUserName: string,
-    createdDate: Date
-    comments: CommentDto[];
+    createdDate: Date,
+    comments: CommentDto[]
 }
 
 export interface CommentDto {
-    id: string;
-    content: string;
-    userId: string;
-    userUserName: string;
-    createdDate: Date;
+    id: string,
+    content: string,
+    userId: string,
+    userUserName: string,
+    createdDate: Date,
+    parentId: string,
+    replies: CommentDto[]
 }

@@ -1,15 +1,30 @@
 import {
-  DomHandler,
   Tooltip,
   TooltipModule
-} from "./chunk-MJXI7IAM.js";
+} from "./chunk-QKVNSSIZ.js";
 import {
   RouterLink,
   RouterLinkActive,
   RouterModule
-} from "./chunk-PCS2RPDE.js";
-import "./chunk-ZN4ZQIKF.js";
-import "./chunk-BBUMVJIZ.js";
+} from "./chunk-WJRXL3E3.js";
+import {
+  BaseIcon,
+  Ripple,
+  RippleModule
+} from "./chunk-UB2AJJUK.js";
+import {
+  DomHandler
+} from "./chunk-JZQAVOZS.js";
+import "./chunk-D5JZOUJE.js";
+import {
+  ObjectUtils,
+  PrimeNGConfig,
+  PrimeTemplate,
+  SharedModule,
+  UniqueComponentId,
+  zindexutils
+} from "./chunk-7NSTRPPD.js";
+import "./chunk-OD2XHR5W.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -19,21 +34,12 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-V4I6KYGB.js";
-import {
-  ObjectUtils,
-  PrimeNGConfig,
-  PrimeTemplate,
-  SharedModule,
-  UniqueComponentId,
-  zindexutils
-} from "./chunk-5IYYOYV5.js";
+} from "./chunk-NKXUTA62.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  Directive,
   ElementRef,
   EventEmitter,
   Inject,
@@ -41,8 +47,6 @@ import {
   Input,
   InputFlags,
   NgModule,
-  NgZone,
-  Optional,
   Output,
   PLATFORM_ID,
   Renderer2,
@@ -62,7 +66,6 @@ import {
   ɵɵclassMap,
   ɵɵcontentQuery,
   ɵɵdefineComponent,
-  ɵɵdefineDirective,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
@@ -97,91 +100,17 @@ import {
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-CHRFX2HE.js";
+} from "./chunk-U7EX62FW.js";
 import {
   Subject,
-  __spreadProps,
-  __spreadValues,
   debounce,
   filter,
   interval
-} from "./chunk-R7GQRDZ6.js";
-
-// node_modules/primeng/fesm2022/primeng-baseicon.mjs
-var _c0 = ["*"];
-var BaseIcon = class _BaseIcon {
-  label;
-  spin = false;
-  styleClass;
-  role;
-  ariaLabel;
-  ariaHidden;
-  ngOnInit() {
-    this.getAttributes();
-  }
-  getAttributes() {
-    const isLabelEmpty = ObjectUtils.isEmpty(this.label);
-    this.role = !isLabelEmpty ? "img" : void 0;
-    this.ariaLabel = !isLabelEmpty ? this.label : void 0;
-    this.ariaHidden = isLabelEmpty;
-  }
-  getClassNames() {
-    return `p-icon ${this.styleClass ? this.styleClass + " " : ""}${this.spin ? "p-icon-spin" : ""}`;
-  }
-  static ɵfac = function BaseIcon_Factory(t) {
-    return new (t || _BaseIcon)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BaseIcon,
-    selectors: [["ng-component"]],
-    hostAttrs: [1, "p-element", "p-icon-wrapper"],
-    inputs: {
-      label: "label",
-      spin: [InputFlags.HasDecoratorInputTransform, "spin", "spin", booleanAttribute],
-      styleClass: "styleClass"
-    },
-    standalone: true,
-    features: [ɵɵInputTransformsFeature, ɵɵStandaloneFeature],
-    ngContentSelectors: _c0,
-    decls: 1,
-    vars: 0,
-    template: function BaseIcon_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef();
-        ɵɵprojection(0);
-      }
-    },
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BaseIcon, [{
-    type: Component,
-    args: [{
-      template: ` <ng-content></ng-content> `,
-      standalone: true,
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      encapsulation: ViewEncapsulation$1.None,
-      host: {
-        class: "p-element p-icon-wrapper"
-      }
-    }]
-  }], null, {
-    label: [{
-      type: Input
-    }],
-    spin: [{
-      type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
-    }],
-    styleClass: [{
-      type: Input
-    }]
-  });
-})();
+} from "./chunk-EXEDAU5J.js";
+import {
+  __spreadProps,
+  __spreadValues
+} from "./chunk-5JEZL4LT.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-angledown.mjs
 var AngleDownIcon = class _AngleDownIcon extends BaseIcon {
@@ -335,173 +264,8 @@ var BarsIcon = class _BarsIcon extends BaseIcon {
   }], null, null);
 })();
 
-// node_modules/primeng/fesm2022/primeng-ripple.mjs
-var Ripple = class _Ripple {
-  document;
-  platformId;
-  renderer;
-  el;
-  zone;
-  config;
-  constructor(document, platformId, renderer, el, zone, config) {
-    this.document = document;
-    this.platformId = platformId;
-    this.renderer = renderer;
-    this.el = el;
-    this.zone = zone;
-    this.config = config;
-  }
-  animationListener;
-  mouseDownListener;
-  timeout;
-  ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (this.config && this.config.ripple) {
-        this.zone.runOutsideAngular(() => {
-          this.create();
-          this.mouseDownListener = this.renderer.listen(this.el.nativeElement, "mousedown", this.onMouseDown.bind(this));
-        });
-      }
-    }
-  }
-  onMouseDown(event) {
-    let ink = this.getInk();
-    if (!ink || this.document.defaultView?.getComputedStyle(ink, null).display === "none") {
-      return;
-    }
-    DomHandler.removeClass(ink, "p-ink-active");
-    if (!DomHandler.getHeight(ink) && !DomHandler.getWidth(ink)) {
-      let d = Math.max(DomHandler.getOuterWidth(this.el.nativeElement), DomHandler.getOuterHeight(this.el.nativeElement));
-      ink.style.height = d + "px";
-      ink.style.width = d + "px";
-    }
-    let offset = DomHandler.getOffset(this.el.nativeElement);
-    let x = event.pageX - offset.left + this.document.body.scrollTop - DomHandler.getWidth(ink) / 2;
-    let y = event.pageY - offset.top + this.document.body.scrollLeft - DomHandler.getHeight(ink) / 2;
-    this.renderer.setStyle(ink, "top", y + "px");
-    this.renderer.setStyle(ink, "left", x + "px");
-    DomHandler.addClass(ink, "p-ink-active");
-    this.timeout = setTimeout(() => {
-      let ink2 = this.getInk();
-      if (ink2) {
-        DomHandler.removeClass(ink2, "p-ink-active");
-      }
-    }, 401);
-  }
-  getInk() {
-    const children = this.el.nativeElement.children;
-    for (let i = 0; i < children.length; i++) {
-      if (typeof children[i].className === "string" && children[i].className.indexOf("p-ink") !== -1) {
-        return children[i];
-      }
-    }
-    return null;
-  }
-  resetInk() {
-    let ink = this.getInk();
-    if (ink) {
-      DomHandler.removeClass(ink, "p-ink-active");
-    }
-  }
-  onAnimationEnd(event) {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    DomHandler.removeClass(event.currentTarget, "p-ink-active");
-  }
-  create() {
-    let ink = this.renderer.createElement("span");
-    this.renderer.addClass(ink, "p-ink");
-    this.renderer.appendChild(this.el.nativeElement, ink);
-    this.renderer.setAttribute(ink, "aria-hidden", "true");
-    this.renderer.setAttribute(ink, "role", "presentation");
-    if (!this.animationListener) {
-      this.animationListener = this.renderer.listen(ink, "animationend", this.onAnimationEnd.bind(this));
-    }
-  }
-  remove() {
-    let ink = this.getInk();
-    if (ink) {
-      this.mouseDownListener && this.mouseDownListener();
-      this.animationListener && this.animationListener();
-      this.mouseDownListener = null;
-      this.animationListener = null;
-      DomHandler.removeElement(ink);
-    }
-  }
-  ngOnDestroy() {
-    if (this.config && this.config.ripple) {
-      this.remove();
-    }
-  }
-  static ɵfac = function Ripple_Factory(t) {
-    return new (t || _Ripple)(ɵɵdirectiveInject(DOCUMENT), ɵɵdirectiveInject(PLATFORM_ID), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(PrimeNGConfig, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _Ripple,
-    selectors: [["", "pRipple", ""]],
-    hostAttrs: [1, "p-ripple", "p-element"],
-    standalone: true
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Ripple, [{
-    type: Directive,
-    args: [{
-      selector: "[pRipple]",
-      standalone: true,
-      host: {
-        class: "p-ripple p-element"
-      }
-    }]
-  }], () => [{
-    type: Document,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [PLATFORM_ID]
-    }]
-  }, {
-    type: Renderer2
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }, {
-    type: PrimeNGConfig,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var RippleModule = class _RippleModule {
-  static ɵfac = function RippleModule_Factory(t) {
-    return new (t || _RippleModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _RippleModule,
-    imports: [Ripple],
-    exports: [Ripple]
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RippleModule, [{
-    type: NgModule,
-    args: [{
-      imports: [Ripple],
-      exports: [Ripple]
-    }]
-  }], null, null);
-})();
-
 // node_modules/primeng/fesm2022/primeng-menubar.mjs
-var _c02 = ["menubar"];
+var _c0 = ["menubar"];
 var _c1 = (a0, a1) => ({
   "p-submenu-list": a0,
   "p-menubar-root-list": a1
@@ -1124,7 +888,7 @@ var MenubarSub = class _MenubarSub {
     selectors: [["p-menubarSub"]],
     viewQuery: function MenubarSub_Query(rf, ctx) {
       if (rf & 1) {
-        ɵɵviewQuery(_c02, 7);
+        ɵɵviewQuery(_c0, 7);
       }
       if (rf & 2) {
         let _t;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { BlogPostBaseService } from '../../../services/abstracts/blog-post-base.service';
 import { BlogPostGetByIdResponse } from '../../../models/responses/blogPosts/blog-post-get-by-id-response';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -19,6 +19,8 @@ export class BlogPostDetailComponent implements OnInit {
   @Input() userName!: string;
   @Input() blogPostId!: string;
 
+  @ViewChild('commentInputContainer', { static: false }) commentInputContainer!: ElementRef;
+
   authUserId!: string | null;
 
   blogPost: BlogPostGetByIdResponse = {
@@ -30,6 +32,8 @@ export class BlogPostDetailComponent implements OnInit {
     createdDate: new Date(),
     comments: []
   }
+
+  parentCommentId: string | null = null;
 
   constructor(
     private authService: AuthBaseService,
@@ -74,10 +78,24 @@ export class BlogPostDetailComponent implements OnInit {
   }
 
   onCommentAdded(newComment: any): void {
-    this.blogPost.comments.unshift(newComment); // Username does not appear in new comments unless the page is refreshed.
+    this.parentCommentId = null;
+    this.getBlogPostDetails(this.blogPostId);
   }
+
   onCommentDeleted(commentId: string): void {
-    this.blogPost.comments = this.blogPost.comments.filter(comment => comment.id !== commentId);
+    this.getBlogPostDetails(this.blogPostId);
+  }
+
+  setParentCommentId(commentId: string): void {
+    this.parentCommentId = commentId;
+  }
+
+  deleteParentCommentId(): void {
+    this.parentCommentId = null;
+  }
+
+  scrollToCommentInput() {
+    this.commentInputContainer.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   editBlogPost(): void {

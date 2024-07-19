@@ -21,21 +21,25 @@
   </div>
 
   <div class="comment-list">
-    <h3>Comments (<i>{{blogPost.comments.length}}</i>)</h3>
+    <h3>Comments</h3>
     <div class="comment" *ngFor="let comment of blogPost.comments.sort()">
       <app-blog-comment-card
-      [commentId]="comment.id"
-      [commentAuthorUsername]="comment.userUserName"
-      [commentAuthorId]="comment.userId"
-      [content]="comment.content"
-      [createdDate]="comment.createdDate"
-      [authUserId]="authUserId ? authUserId : 'null'"
-      (commentDeleted)="onCommentDeleted($event)">
+        [comment]="comment"
+        [authUserId]="authUserId ? authUserId : 'null'"
+        (commentDeleted)="onCommentDeleted($event)"
+        (parentComment)="setParentCommentId($event)"
+        (scrollToCommentInput)="scrollToCommentInput()">
       </app-blog-comment-card>
     </div>
 
-    <div class="comment-input-container">
-      <app-blog-comment-form [userId]="authUserId ? authUserId : 'null'" [blogPostId]="blogPostId" (commentAdded)="onCommentAdded($event)"></app-blog-comment-form>
+    <div #commentInputContainer class="comment-input-container">
+      <app-blog-comment-form 
+        [userId]="authUserId ? authUserId : 'null'" 
+        [blogPostId]="blogPostId"
+        (commentAdded)="onCommentAdded($event)"
+        [parentCommentId]="parentCommentId"
+        (replyEnded)="deleteParentCommentId()">
+      </app-blog-comment-form>
     </div>
 
   </div>

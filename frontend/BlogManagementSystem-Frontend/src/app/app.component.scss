@@ -17,3 +17,11 @@
     background-color: var(--surface-50);
     color: var(--text-color);
 }
+
+:host {
+    ::ng-deep{
+        .p-toast-icon-close {
+            border: 0;
+        }
+    }
+}

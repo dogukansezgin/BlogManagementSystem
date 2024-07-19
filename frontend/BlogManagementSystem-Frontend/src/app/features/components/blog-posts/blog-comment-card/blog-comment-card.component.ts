@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentBaseService } from '../../../services/abstracts/comment-base.service';
 import { CommentDeleteRequest } from '../../../models/requests/comments/comment-delete-request';
+import { CommentDto } from '../../../models/responses/blogPosts/blog-post-get-by-id-response';
 
 @Component({
   selector: 'app-blog-comment-card',
@@ -11,16 +12,21 @@ import { CommentDeleteRequest } from '../../../models/requests/comments/comment-
   styleUrl: './blog-comment-card.component.scss'
 })
 export class BlogCommentCardComponent {
-  @Input() commentId!: string;
-  @Input() commentAuthorUsername!: string;
-  @Input() commentAuthorId!: string;
-  @Input() content!: string;
-  @Input() createdDate!: Date;
+  @Input() comment!: CommentDto;
   @Input() authUserId!: string;
 
   @Output() commentDeleted = new EventEmitter<string>();
+  @Output() parentComment = new EventEmitter<string>();
+  @Output() scrollToCommentInput = new EventEmitter<void>();
 
   constructor(private commentService: CommentBaseService) {}
+
+  replyComment(commentId: string): void {
+    if (commentId) {
+      this.parentComment.emit(commentId);
+      this.scrollToCommentInput.emit();
+    }
+  }
 
   deleteComment(commentId: string): void {
     if (commentId) {
@@ -31,7 +37,6 @@ export class BlogCommentCardComponent {
 
       this.commentService.deleteComment(commentDeleteModel).subscribe({
         next: (response) => {
-          console.log(response);
           this.commentDeleted.emit(commentId);
         },
         error: (err) => {
