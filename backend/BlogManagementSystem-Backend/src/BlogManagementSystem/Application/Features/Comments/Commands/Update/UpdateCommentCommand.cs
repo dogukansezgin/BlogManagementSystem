@@ -13,6 +13,7 @@ public class UpdateCommentCommand : IRequest<UpdatedCommentResponse>, ISecuredRe
     public string Content { get; set; }
     public Guid UserId { get; set; }
     public Guid BlogPostId { get; set; }
+    public Guid ParentId { get; set; }
 
     public string[] Roles => [UsersOperationClaims.Admin, UsersOperationClaims.User];
 

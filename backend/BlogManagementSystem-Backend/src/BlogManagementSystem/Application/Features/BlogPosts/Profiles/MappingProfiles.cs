@@ -33,6 +33,7 @@ public class MappingProfiles : Profile
 
         CreateMap<Comment, CommentDto>()
             .ForMember(dest => dest.UserUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.Replies, opt => opt.MapFrom(src => src.Replies))
             .ReverseMap();
         CreateMap<Comment, CommentDtoCount>().ReverseMap();
     }

@@ -8,5 +8,6 @@ public class CreatedCommentResponse : IResponse
     public string Content { get; set; }
     public Guid UserId { get; set; }
     public Guid BlogPostId { get; set; }
+    public Guid ParentId { get; set; }
     public DateTime CreatedDate { get; set; }
 }

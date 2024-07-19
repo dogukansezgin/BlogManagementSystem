@@ -21,4 +21,6 @@ public class CommentDto
     public Guid UserId { get; set; }
     public string UserUserName { get; set; }
     public DateTime CreatedDate { get; set; }
+    public Guid? ParentId { get; set; }
+    public List<CommentDto> Replies { get; set; }
 }

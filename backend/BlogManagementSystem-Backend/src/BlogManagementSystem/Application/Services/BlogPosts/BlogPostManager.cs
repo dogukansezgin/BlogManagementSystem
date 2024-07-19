@@ -129,8 +129,25 @@ public class BlogPostManager : IBlogPostService
         BlogPost? blogPost = await _blogpostRepository.GetAsync(
             x => x.Id == id,
             include: x => x.Include(x => x.User)
-                           .Include(x => x.Comments).ThenInclude(y => y.User)
+                           .Include(x => x.Comments)
+                                .ThenInclude(c => c.User)
+                           .Include(x => x.Comments)
+                                .ThenInclude(c => c.Replies)
+                                    .ThenInclude(r => r.User) 
         );
+
+        if (blogPost != null)
+        {
+            List<Comment> topLevelComments = blogPost.Comments
+                .Where(c => c.ParentId == null)
+                .ToList();
+
+            blogPost.Comments.Clear();
+            foreach (var comment in topLevelComments)
+            {
+                blogPost.Comments.Add(comment);
+            }
+        }
 
         await _blogpostBusinessRules.BlogPostShouldExistWhenSelected(blogPost);
 
